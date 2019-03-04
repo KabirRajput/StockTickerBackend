@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,7 +40,6 @@ public class DbServiceResource {
 	
 	@PostMapping("/add")
 	public List<String> add(@RequestBody final Quotes quotes) {
-		System.out.println(quotes);
 		quotes.getQuotes()
 			.stream()
 			.map(quote -> new Quote(quotes.getUsername(), quote))
@@ -47,5 +47,12 @@ public class DbServiceResource {
 				quotesRepository.save(quote);
 			});
 		return getQuotesByUsername(quotes.getUsername());
+	}
+	
+	@DeleteMapping("/delete/{username}")
+	public List<String> delete(@PathVariable("username") final String username) {
+		List<Quote> quotes = quotesRepository.findByUsername(username);
+		quotesRepository.delete(quotes);
+		return getQuotesByUsername(username);
 	}
 }
