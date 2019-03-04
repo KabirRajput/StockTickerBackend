@@ -27,4 +27,9 @@ public class Quotes {
 		super();
 	}
 	
+	@Override
+	public String toString() {
+		return "Quotes [username=" + username + ", quotes=" + quotes + "]";
+	}
+	
 }

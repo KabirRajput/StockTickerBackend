@@ -23,9 +23,8 @@ public class Quote {
 	public Quote() {
 		super();
 	}
-	public Quote(Integer id, String username, String quote) {
+	public Quote(String username, String quote) {
 		super();
-		this.id = id;
 		this.username = username;
 		this.quote = quote;
 	}

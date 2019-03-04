@@ -1,4 +1,4 @@
-package com.legend.stock.dbservice.resources;
+package com.legend.stock.dbservice.resource;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,18 +11,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.legend.stock.dbservice.model.Quote;
 import com.legend.stock.dbservice.model.Quotes;
 import com.legend.stock.dbservice.repository.QuotesRepository;
 
 @RestController
 @RequestMapping("/rest/db")
-public class DbServiceApplication {
+public class DbServiceResource {
 
 	@Autowired
 	private QuotesRepository quotesRepository;
 
 	@GetMapping("/{username}")
 	public List<String> getQuotes(@PathVariable("username") final String username) {
+		System.out.println("hello");
 		return getQuotesByUsername(username);
 	}
 	
@@ -37,12 +39,13 @@ public class DbServiceApplication {
 	
 	@PostMapping("/add")
 	public List<String> add(@RequestBody final Quotes quotes) {
+		System.out.println(quotes);
 		quotes.getQuotes()
 			.stream()
 			.map(quote -> new Quote(quotes.getUsername(), quote))
 			.forEach(quote -> {
-				quotesRepository.save(quote));
+				quotesRepository.save(quote);
 			});
-		return null;
+		return getQuotesByUsername(quotes.getUsername());
 	}
 }
