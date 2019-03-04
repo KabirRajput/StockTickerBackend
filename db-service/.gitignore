@@ -1,5 +1,3 @@
-application.properties
-pom.xml
 HELP.md
 /target/
 !.mvn/wrapper/maven-wrapper.jar
@@ -12,6 +10,8 @@ HELP.md
 .settings
 .springBeans
 .sts4-cache
+application.properties
+pom.xml
 
 ### IntelliJ IDEA ###
 .idea
