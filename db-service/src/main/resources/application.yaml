@@ -1,10 +1,9 @@
 spring:
   application:
-    name: stock-service
+    name: db-service
 
 server:
-  port: 8301
-
+  port: 8302
 
 eureka:
   client:
