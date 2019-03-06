@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.legend.stock.dbservice.model.Quote;
 import com.legend.stock.dbservice.model.User;
 import com.legend.stock.dbservice.model.exception.UserBalanceException;
+import com.legend.stock.dbservice.model.exception.UserNotFoundException;
 import com.legend.stock.dbservice.model.exception.UserStockException;
 import com.legend.stock.dbservice.repository.UserRepository;
 
@@ -34,7 +35,6 @@ public class DbServiceResource {
 		return userRepository.save(user);
 	}
 	
-	@CrossOrigin(origins = "http://localhost:3000")
 	@GetMapping("/")
 	public List<User> findAllUser() {
 		return userRepository.findAll();
